@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS dental_clinic;
+USE dental_clinic;
+SHOW DATABASES;
