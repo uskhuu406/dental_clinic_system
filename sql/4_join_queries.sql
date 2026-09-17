@@ -41,3 +41,28 @@ SELECT
 FROM emchilgee
 JOIN uilchilgee
 ON emchilgee.uilchilgee_id = uilchilgee.uilchilgee_id;
+
+SELECT
+tulbur.tulbur_id,
+emchilgee.emchilgeenii_ognoo,
+emchilgee.onosh,
+tulburiin_dun,
+tulburiin_turul
+from  emchilgee
+join tulbur
+on emchilgee.emchilgee_id=tulbur.emchilgee_id;
+
+
+select
+Uvchtun.ovog,
+Uvchtun.ner,
+Ajiltan.ovog,
+Ajiltan.ner,
+Ajiltan.alban_tushaal,
+Ajiltan.mergejil,
+Uvchtun.utas
+from tsag_zahialga
+join Ajiltan
+on Ajiltan.ajiltan_id=tsag_zahialga.ajiltan_id
+join Uvchtun
+on Uvchtun.uvchtun_id=tsag_zahialga.uvchtun_id;
