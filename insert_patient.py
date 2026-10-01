@@ -1,9 +1,9 @@
 import mysql.connector
-conn=mysql.conncetor.connect(
+conn=mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    datebase="dental"
+    database="dental"
 )
 cursor=conn.cursor()
 phone=input("utas: ")
@@ -33,7 +33,7 @@ last_name,
 gender,
 birth_date
 )
-VALUES(%s%,%s,%s,%s,%s)
+VALUES(%s,%s,%s,%s,%s)
 """
 values_patient=(
     app_id,
@@ -42,5 +42,5 @@ values_patient=(
     gender,
     birth_date
 )
-cursor.excute(sql_patient,values_patient)
+cursor.execute(sql_patient,values_patient)
 conn.commit()
