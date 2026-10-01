@@ -1,154 +1,42 @@
-use dental_clinic;
-
-insert into Uvchtun(
-    ovog,
-    ner,
-    utas,
-    tursun_ognoo,
-    huis,
-    hayag,
-    email,
-    harshil
-)
-VALUES(
-    'bat',
-    'galaa',
-    '88429033',
-    '2003-02-04',
-    'er',
-    'ulaanbaatar',
-    'galaa@gmail.com',
-    'baihgui'
-);
-
-select *from Uvchtun;
-
-insert into Ajiltan(
-    ovog,
-    ner,
-    utas,
-    email,
-    alban_tushaal,
-    mergejil,
-    ajild_orson_ognoo
-)
-VALUES(
-    'bold',
-    'solongo',
-    '99722462',
-    'solongo@gmail.com',
-    'emch',
-    'shudnii emch',
-    '2025-01-13'
-);
-
-select *from Ajiltan;
-
-insert into uilchilgee(
-    uilchilgee_ner,
-    tailbar,
-    une,
-    hugatsaa
-)
-VALUES(
-    'tseverlegee',
-    'shud tseverleh uilchilgee',
-    50000,
-    30
-);
-
-select *from uilchilgee;
-
-insert into tsag_zahialga(
-    uvchtun_id,
-    ajiltan_id,
-    ognoo,
-    tsag,
-    tuluv
-)
-VALUES(
-    1,
-    1,
-    '2026-09-16',
-    '14:00:00',
-    'duussan'
-);
-
-select *from tsag_zahialga;
-
-insert into tsag_zahialga_uilchilgee(
-    tsag_zahialga_id,
-    uilchilgee_id
-)
-VALUES(
-    1,
-    1
-);
-
-select *from tsag_zahialga_uilchilgee;
-
-insert into emchilgee(
-    tsag_zahialga_id,
-    uilchilgee_id,
-    emchilgeenii_ognoo,
-    onosh,
-    temdeglel
-)
-VALUES(
-    1,
-    1,
-    '2026-09-16',
-    'shudnii chuluutai',
-    'shudnii chuluu tseverlesen'
-);
-
-select *from emchilgee;
-
-insert into tulbur(
-    emchilgee_id,
-    tulburiin_dun,
-    tulburiin_turul,
-    tulburiin_ognoo,
-    tuluv
-)
-VALUES(
-    1,
-    50000,
-    'card',
-    '2026-09-16',
-    'tulugdsun'
-);
-
-select *from tulbur;
-
-insert into irts(
-    ajiltan_id,
-    ognoo,
-    irsen_tsag,
-    garsan_tsag
-)
-VALUES(
-    1,
-    '2026-09-16',
-    '09:00:00',
-    '18:00:00'
-);
-
-select *from irts;
-
-insert into baraa_material(
-    baraa_ner,
-    turul,
-    uldegdel,
-    negj,
-    dood_hemjee
-)
-VALUES(
-    'emnelegiin beelii',
-    'heregleenii material',
-    50,
-    'hairtsag',
-    10
-);
-
-select *from baraa_material;
+USE dental_clinic;
+INSERT INTO Patient(first_name,last_name,phone,email,date_of_birth,password_hash)
+VALUES
+('Galaa','Dorj','88429033','galaa@gmail.com','2000-11-09','$2b$12$Oe0tAxQD3VBWWsnzU304kuABwpesWpEUIYm2nqWq6KhPNgG5VWq/2'),
+('Bold','Bat','88112233',NULL,'1998-05-14',NULL);
+SELECT * FROM Patient;
+INSERT INTO Staff(first_name,last_name,phone,email,password_hash,role)
+VALUES
+('Saraa','Bold','88102923','saraa@gmail.com','$2b$12$j0Wl1PPzW84i6j4SDaAmoeCFffbbP889tITr18uHPnE0yLcD9GizO','DOCTOR'),
+('Bataa','Dorj','88114455','bataa@gmail.com','$2b$12$RCsAcWeTqw2ZpZSPblcIz.jORqIXKeX6dgihGdr81yeMp5qmkkcj2','RECEPTIONIST'),
+('Anaa','Bat','88116677','anaa@gmail.com','$2b$12$3p7PcVwHoHXEQlnc46zi9uWYs/21f89aYtfYA/Aq/kd9vlAj/kVGq','ADMIN');
+SELECT * FROM Staff;
+INSERT INTO Service(service_name,description,price)
+VALUES
+('Uzleg','Shudnii uzleg',50000.00),
+('Lombo','Shud lombo tavih',80000.00);
+SELECT * FROM Service;
+INSERT INTO StaffSchedule(staff_id,day_of_week,start_time,end_time)
+VALUES(1,1,'09:00:00','18:00:00');
+SELECT * FROM StaffSchedule;
+INSERT INTO Appointment(patient_id,doctor_id,scheduled_at,channel,status)
+VALUES
+(1,1,'2026-09-21 10:00:00','WEB','COMPLETED'),
+(2,1,'2026-09-21 14:00:00','PHONE','COMPLETED');
+SELECT * FROM Appointment;
+INSERT INTO AppointmentService(appointment_id,service_id)
+VALUES
+(1,1),
+(1,2),
+(2,1);
+SELECT * FROM AppointmentService;
+INSERT INTO Treatment(appointment_id,service_id,diagnosis,tooth_number,tooth_surface,treatment_notes,unit_price,performed_at)
+VALUES
+(1,2,'Shud tsoorolttoi','16','O','16-r shudend lombo tavisan',80000.00,'2026-09-21 11:00:00'),
+(2,1,'Shudnii eronhii uzleg',NULL,NULL,'Shudnii uzleg hiisen',50000.00,'2026-09-21 14:30:00');
+SELECT * FROM Treatment;
+INSERT INTO Payment(appointment_id,amount,payment_method,paid_at)
+VALUES
+(1,30000.00,'CASH','2026-09-21 11:10:00'),
+(1,50000.00,'CARD','2026-09-21 11:15:00'),
+(2,50000.00,'TRANSFER','2026-09-21 14:40:00');
+SELECT * FROM Payment;
